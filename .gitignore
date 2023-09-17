@@ -1,0 +1,18 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/API/.vs
+/.vs
+/API/StarterKit.Application/bin
+/API/StarterKit.Application/obj
+/API/StarterKit.Domain/bin
+/API/StarterKit.Domain/obj
+/API/StarterKit.Infrastructure/.vs/RAqua.Infrastructure
+/API/StarterKit.Infrastructure/bin
+/API/StarterKit.Infrastructure/obj
+/API/StarterKit.Shared/.vs/RAqua.Shared
+/API/StarterKit.Shared/bin
+/API/StarterKit.Shared/obj
+/API/StarterKitAPI/bin/Debug
+/API/StarterKitAPI/obj

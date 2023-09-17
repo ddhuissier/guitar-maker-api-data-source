@@ -1,0 +1,81 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "StarterKitContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Data",
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "StarterKit.Infrastructure",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[BOILER]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[BUILDING_PERIODS]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CITY]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[COUNTRY]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CURRENCY]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DATA_TRANSLATION]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NEEDS]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[OPCO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[OPCO_PRODUCT]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PRODUCT]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SCOP]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "bey0099\\dev.StarterKit.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
