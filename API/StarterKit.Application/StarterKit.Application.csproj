@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Products\Commands\" />
     <Folder Include="Features\Guitars\Commands\" />
+    <Folder Include="Features\Orders\" />
     <Folder Include="Features\UserPost\Commands\" />
     <Folder Include="Features\Users\Commands\" />
   </ItemGroup>
