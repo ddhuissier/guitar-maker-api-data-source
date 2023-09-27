@@ -18,38 +18,37 @@ namespace StarterKit.Application.Features.Product.Commands.UpdateProduct
         public string Label { get; set; }
         [Required]
         public string UserId { get; set; }
+    }
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Response<ProductData.Product>>
+    {
+        private readonly IProductRepositoryAsync _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public UpdateProductCommandHandler(IProductRepositoryAsync productRepository,
 
-        public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Response<ProductData.Product>>
+            IMapper mapper,
+            IUnitOfWork unitOfWork)
         {
-            private readonly IProductRepositoryAsync _productRepository;
-            private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
-            public UpdateProductCommandHandler(IProductRepositoryAsync productRepository,
-
-                IMapper mapper,
-                IUnitOfWork unitOfWork)
+            _productRepository = productRepository;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+        }
+        public async Task<Response<ProductData.Product>> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
+        {
+            if (command == null)
             {
-                _productRepository = productRepository;
-                _mapper = mapper;
-                _unitOfWork = unitOfWork;
+                throw new ApiException($"Product Not Found.");
             }
-            public async Task<Response<ProductData.Product>> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
+            else
             {
-                if (command == null)
+                var product = _mapper.Map<ProductData.Product>(command);
+                if (product.Id != 0)
                 {
-                    throw new ApiException($"Product Not Found.");
+                    _productRepository.Update(product, command.UserId);
+                    await _unitOfWork.SaveChangesAsync(cancellationToken);
                 }
-                else
-                {
-                    var product = _mapper.Map<ProductData.Product>(command);
-                    if (product.Id != 0)
-                    {
-                        _productRepository.Update(product, command.UserId);
-                        await _unitOfWork.SaveChangesAsync(cancellationToken);
-                    }
 
-                    return new Response<ProductData.Product>(product);
-                }
+                return new Response<ProductData.Product>(product);
             }
         }
     }

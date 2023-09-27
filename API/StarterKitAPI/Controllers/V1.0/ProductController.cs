@@ -2,7 +2,7 @@
 using StarterKit.Application.Features.Products.Queries.GetProductById;
 using Microsoft.AspNetCore.Mvc;
 using StarterKit.Application.Features.Product.Commands.UpdateProduct;
-using StarterKit.Application.Features.Product.Commands.CreateProject;
+using StarterKit.Application.Features.Product.Commands.CreateProduct;
 using StarterKit.Application.Features.Product.Commands.DeleteProductById;
 
 namespace StarterKitAPI.Controllers

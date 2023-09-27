@@ -16,3 +16,5 @@
 /API/StarterKit.Shared/obj
 /API/StarterKitAPI/bin/Debug
 /API/StarterKitAPI/obj
+/API/StarterKit.UnitTests/bin/Debug/net7.0
+/API/StarterKit.UnitTests/obj

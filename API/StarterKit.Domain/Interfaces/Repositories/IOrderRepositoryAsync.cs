@@ -5,6 +5,6 @@ namespace StarterKit.Domain.Interfaces.Repositories
 {
     public interface IOrderRepositoryAsync : IBaseRepositoryAsync< Order>
     {
-
+        Task<int> GetDeliveredOrderCount();
     }
 }

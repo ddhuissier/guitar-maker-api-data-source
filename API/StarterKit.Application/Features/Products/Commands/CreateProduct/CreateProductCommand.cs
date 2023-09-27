@@ -6,7 +6,7 @@ using StarterKit.Domain.Interfaces.Repositories;
 using System.ComponentModel.DataAnnotations;
 using ProductData = StarterKit.Domain.Models.Data;
 
-namespace StarterKit.Application.Features.Product.Commands.CreateProject
+namespace StarterKit.Application.Features.Product.Commands.CreateProduct
 {
     public class CreateProductCommand : IRequest<Response<ProductData.Product>>
     {

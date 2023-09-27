@@ -2,7 +2,7 @@
 using AutoMapper;
 using StarterKit.Application.Features.Users.Queries.GetAllUsers;
 using StarterKit.Domain.Models.Data;
-using StarterKit.Application.Features.Product.Commands.CreateProject;
+using StarterKit.Application.Features.Product.Commands.CreateProduct;
 using StarterKit.Application.Features.Product.Commands.UpdateProduct;
 
 namespace StarterKit.Infrastructure.Profiles

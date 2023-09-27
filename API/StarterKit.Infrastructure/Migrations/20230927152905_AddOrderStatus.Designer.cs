@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StarterKit.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using StarterKit.Infrastructure.Data;
 namespace StarterKit.Infrastructure.Migrations
 {
     [DbContext(typeof(StarterKitContext))]
-    partial class StarterKitContextModelSnapshot : ModelSnapshot
+    [Migration("20230927152905_AddOrderStatus")]
+    partial class AddOrderStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

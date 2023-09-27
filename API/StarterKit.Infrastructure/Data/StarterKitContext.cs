@@ -11,9 +11,11 @@ namespace StarterKit.Infrastructure.Data
         public StarterKitContext()
         {
         }
+        public DbSet<DataTranslation> DataTranslations { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Guitar> Guitars { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public StarterKitContext(DbContextOptions<StarterKitContext> options)
             : base(options)
         {
@@ -53,6 +55,11 @@ namespace StarterKit.Infrastructure.Data
                     Label = "Trussrod",
                 }
            );
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(e => e.TotalPrice)
+                    .HasColumnType("decimal(18, 2)");                    
+            });
             OnModelCreatingPartial(modelBuilder);
         }
 

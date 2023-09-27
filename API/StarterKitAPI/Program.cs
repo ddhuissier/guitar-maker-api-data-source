@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using OroServices.Domain.Common;
 using Serilog;
 using StarterKit.Application.Extensions;
+using StarterKit.Domain.Models;
 using StarterKit.Infrastructure.Extensions;
 using StarterKit.Shared.Extensions;
 using StarterKitAPI.Extensions;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +50,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddOptions<ExternalEndPoints>().Bind(builder.Configuration.GetSection("ExternalEndPoints"));
+builder.Services.AddOutputCache();
 
 builder.Logging.ClearProviders();
 var logger = new LoggerConfiguration()
@@ -57,19 +61,32 @@ builder.Logging.AddSerilog(logger);
 
 var app = builder.Build();
 
+app.UseOutputCache();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("v1/swagger.json", "V1 Docs");
+
+        c.DisplayRequestDuration();
+    });
 }
 
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
 
+var jsonBytes = File.ReadAllBytes("./posts.json");
+var jsonDoc = JsonDocument.Parse(jsonBytes);
+var posts = JsonSerializer.Deserialize<List<Post>>(jsonDoc);
+
 app.UseAuthorization();
 
 app.MapControllers();
+// Test Output caching with swagger DisplayRequestDuration
+app.MapGet("/posts", () => Results.Ok(posts)).CacheOutput();
 
 app.Run();
