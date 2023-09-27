@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using StarterKit.Domain.Interfaces.Repositories;
+﻿using StarterKit.Domain.Interfaces.Repositories;
 using StarterKit.Domain.Models.Data;
 using StarterKit.Infrastructure.Data;
 
 
 namespace StarterKit.Infrastructure.Repositories
 {
-    public class ProductRepositoryAsync : BaseRepositoryAsync<StarterKitContext, Product>, IProductRepositoryAsync
+    internal sealed class ProductRepositoryAsync : BaseRepositoryAsync<Product>, IProductRepositoryAsync
     {
         public ProductRepositoryAsync(StarterKitContext dbContext) : base(dbContext)
         {

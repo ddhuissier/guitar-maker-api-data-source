@@ -5,22 +5,19 @@ using StarterKit.Infrastructure.Data;
 
 namespace StarterKit.Infrastructure.Repositories
 {
-    public class BaseRepositoryAsync<TContext,T> : IBaseRepositoryAsync<TContext,T> where TContext : DbContext where T : class 
+    public class BaseRepositoryAsync<T> : IBaseRepositoryAsync<T>  where T : class 
     {
-        private readonly DbFactory _dbFactory;
         private readonly StarterKitContext _dbContext;
         private DbSet<T> _dbSet;
 
         protected DbSet<T> DbSet
         {
             get => _dbSet ?? (_dbSet = _dbContext.Set<T>());
-            //get => _dbSet ?? (_dbSet = _dbFactory.DbContext.Set<T>());
         }
 
-        public BaseRepositoryAsync(StarterKitContext dbContext)//DbFactory dbFactory)
+        public BaseRepositoryAsync(StarterKitContext dbContext)
         {
             _dbContext = dbContext;
-            //_dbFactory = dbFactory;
         }
 
         public virtual async Task<T> GetByIdAsync(int id)
@@ -122,8 +119,7 @@ namespace StarterKit.Infrastructure.Repositories
 
         public async Task<IReadOnlyList<T>> GetPagedReponseAsync(int pageNumber, int pageSize)
         {
-            return await _dbContext
-                .Set<T>()
+            return await DbSet
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .AsNoTracking()
@@ -143,24 +139,21 @@ namespace StarterKit.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<T> AddAsync(T entity, string? userId = null, string? method = null)
+        public T Add(T entity, string? userId = null)
         {
-            await DbSet.AddAsync(entity);
-             await _dbContext.SaveChangesAsync();
+            DbSet.Add(entity);
             return entity;
         }
 
-        public async Task UpdateAsync(T entity, string? userId = null, string? method = null)
+        public void Update(T entity, string? userId = null)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync();
+            DbSet.Update(entity);
 
         }
 
-        public async Task DeleteAsync(T entity, string? userId = null, string? method = null)
+        public void Delete(T entity, string? userId = null)
         {
             DbSet.Remove(entity);
-            await _dbContext.SaveChangesAsync();
          }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()

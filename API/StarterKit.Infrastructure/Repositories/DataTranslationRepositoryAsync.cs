@@ -6,7 +6,7 @@ using StarterKit.Infrastructure.Data;
 
 namespace StarterKit.Infrastructure.Repositories
 {
-    public class DataTranslationRepositoryAsync : BaseRepositoryAsync<StarterKitContext,DataTranslation>, IDataTranslationRepositoryAsync
+    internal sealed class DataTranslationRepositoryAsync : BaseRepositoryAsync<DataTranslation>, IDataTranslationRepositoryAsync
     {
         private readonly DbSet<DataTranslation> _dataTranslation;
         public DataTranslationRepositoryAsync(StarterKitContext dbContext) : base(dbContext)

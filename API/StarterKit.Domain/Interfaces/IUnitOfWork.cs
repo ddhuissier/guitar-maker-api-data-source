@@ -1,8 +1,8 @@
 ﻿
 namespace StarterKit.Domain.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork: IDisposable
     {
-        Task<int> CommitAsync();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

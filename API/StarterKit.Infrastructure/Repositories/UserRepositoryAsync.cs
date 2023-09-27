@@ -5,7 +5,7 @@ using StarterKit.Infrastructure.Data;
 
 namespace StarterKit.Infrastructure.Repositories
 {
-    public class UserRepositoryAsync : BaseRepositoryAsync<StarterKitContext, User>, IUserRepositoryAsync
+    public class UserRepositoryAsync : BaseRepositoryAsync< User>, IUserRepositoryAsync
     {
         public UserRepositoryAsync(StarterKitContext dbContext) : base(dbContext)
         {

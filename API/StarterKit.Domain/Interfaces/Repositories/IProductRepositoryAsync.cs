@@ -3,7 +3,7 @@ using StarterKit.Domain.Models.Data;
 
 namespace StarterKit.Domain.Interfaces.Repositories
 {
-    public interface IProductRepositoryAsync : IBaseRepositoryAsync<DbContext, Product>
+    public interface IProductRepositoryAsync : IBaseRepositoryAsync< Product>
     {
 
     }

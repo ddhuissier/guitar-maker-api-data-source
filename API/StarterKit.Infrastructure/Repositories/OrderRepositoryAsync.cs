@@ -5,7 +5,7 @@ using StarterKit.Infrastructure.Data;
 
 namespace StarterKit.Infrastructure.Repositories
 {
-    public class OrderRepositoryAsync : BaseRepositoryAsync<StarterKitContext, Order>, IOrderRepositoryAsync
+    internal sealed class OrderRepositoryAsync : BaseRepositoryAsync< Order>, IOrderRepositoryAsync
     {
         public OrderRepositoryAsync(StarterKitContext dbContext) : base(dbContext)
         {

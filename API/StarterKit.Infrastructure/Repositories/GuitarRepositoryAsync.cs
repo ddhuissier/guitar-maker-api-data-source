@@ -6,7 +6,7 @@ using StarterKit.Infrastructure.Data;
 
 namespace StarterKit.Infrastructure.Repositories
 {
-    public class GuitarRepositoryAsync : BaseRepositoryAsync<StarterKitContext, Guitar>, IGuitarRepositoryAsync
+    internal sealed class GuitarRepositoryAsync : BaseRepositoryAsync< Guitar>, IGuitarRepositoryAsync
     {
 
         public GuitarRepositoryAsync(StarterKitContext dbContext) : base(dbContext)

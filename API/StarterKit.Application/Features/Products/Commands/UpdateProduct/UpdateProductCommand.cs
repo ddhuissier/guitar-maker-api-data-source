@@ -3,6 +3,7 @@ using AutoMapper;
 using MediatR;
 using StarterKit.Application.Exceptions;
 using StarterKit.Application.Wrappers;
+using StarterKit.Domain.Interfaces;
 using StarterKit.Domain.Interfaces.Repositories;
 using System.ComponentModel.DataAnnotations;
 using ProductData = StarterKit.Domain.Models.Data;
@@ -21,13 +22,16 @@ namespace StarterKit.Application.Features.Product.Commands.UpdateProduct
         public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Response<ProductData.Product>>
         {
             private readonly IProductRepositoryAsync _productRepository;
+            private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
             public UpdateProductCommandHandler(IProductRepositoryAsync productRepository,
-               
-                IMapper mapper)
+
+                IMapper mapper,
+                IUnitOfWork unitOfWork)
             {
-                _productRepository = productRepository;               
+                _productRepository = productRepository;
                 _mapper = mapper;
+                _unitOfWork = unitOfWork;
             }
             public async Task<Response<ProductData.Product>> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
             {
@@ -40,7 +44,8 @@ namespace StarterKit.Application.Features.Product.Commands.UpdateProduct
                     var product = _mapper.Map<ProductData.Product>(command);
                     if (product.Id != 0)
                     {
-                        await _productRepository.UpdateAsync(product, command.UserId, nameof(UpdateProductCommand));
+                        _productRepository.Update(product, command.UserId);
+                        await _unitOfWork.SaveChangesAsync(cancellationToken);
                     }
 
                     return new Response<ProductData.Product>(product);
