@@ -1,2 +1,2 @@
-# guitar-maker-api-data-source
+# starterkit-webapi
 # Clean Archi + CQRS + MediatR + Serilog + EF Core + MS SQL
